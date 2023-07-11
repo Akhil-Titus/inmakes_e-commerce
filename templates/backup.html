@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+Product page
+{% endblock %}
+
+{% block title %}
+U-tech
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <p><a href="{%  url 'shop:allProdCat' %}">Home</a> | <a
+                href="{{product.category.get_url}}">{{product.category}}</a> | {{product.name}}
+        </p>
+    </div>
+</div>
+<br>
+<div>
+    <div>
+        <div>
+            <img src="{{product.image.url}}" alt="{{product.name}}">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+############################################ cart
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+This is the cart page. Proceed to review your items and place your order
+
+{% endblock %}
+{% block title %}
+U-tech
+{% endblock %}
+{% block content %}
+{% if not cart_items %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+            Your Shopping cart is empty
+        </h1>
+        <br>
+        <p class="text-center">
+            Please click <a href="{% url 'shop:allProdCart' %}">Here</a> To continue Shopping
+        </p>
+    </div>
+</div>
+{% else %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+            Your Shopping cart
+        </h1>
+        <br>
+    </div>
+    <div class="row mx-auto">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <table class="table my_custom_table">
+                <thread class="my_custom_thread">
+                    <tr>
+                        <th colspan="5">
+                            Your Items
+                        </th>
+                    </tr>
+                </thread>
+                <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                    <td>
+                        <a href="cart_item.product,get_absolute_url"><img src="{{cart_item.product.image.url}}"
+                                                                          alt="img"
+                                                                          class="float-left rounded custom_image"></a>
+                    </td>
+                    <td class="text-left">
+                        {{cart_item.product.name}}
+                        <br>
+                        SKU:{{cart_item.product.id}}
+                        <br>
+                        Price: ${{cart_item.product.price}}
+                        <br>
+                        Qty: {{cart_item.quantity}} x {{cart_item.product.price}}
+                    </td>
+                    <td>
+                        $ {{cart_item.sub_total}}
+                    </td>
+                    {% if cart_item.quantity < cart_item.product.stock %}
+                    <td>
+                        <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i
+                                class="fa-solid fa-plus custom_icon"></i>
+                            &nbsp;<a href="" class="custom_a"><i class="fa-solid fa-plus custom_icon"></i></a>
+                            &nbsp;<a href="" class="custom_icon"><i class="fa-regular fa-trash"></i></a>
+                        </a>
+                    </td>
+                    {% else %}
+                    <td>
+                            &nbsp;<a href="" class="custom_a"><i class="fa-solid fa-plus custom_icon"></i></a>
+                            &nbsp;<a href="" class="custom_icon"><i class="fa-regular fa-trash"></i></a>
+                        </a>
+                    </td>
+                </tr>
+                {% endif %}
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <table class="table my_custom_table">
+                <thread class="my_custom_thread">
+                    <tr>
+                        <th>
+                            Checkout
+                        </th>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr>
+                    <td>
+                        Please review your shopping cart items before proceeding with order payment.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="mx-auto">
+                <a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue Shoppping</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+############################################# working
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+
+This is the cart page. Proceed to review your items and place your order
+
+{% endblock %}
+{% block title %}
+U-tech
+{% endblock %}
+{% block content %}
+{% if not cart_items %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+            Your Shopping cart is empty
+        </h1>
+        <br>
+        <p class="text-center">
+            Please click <a href="{% url 'shop:allProdCart' %}">Here</a> To continue Shopping
+        </p>
+    </div>
+</div>
+{% else %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+            Your Shopping cart
+        </h1>
+        <br>
+    </div>
+<!--    <div class="row mx-auto">-->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <table class="table my_custom_table">
+                <thread class="my_custom_thread">
+                    <tr>
+                        <th colspan="5">
+                            Your Items
+                        </th>
+                    </tr>
+                </thread>
+                <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                    <td>
+                        <a href="cart_item.product.get_absolute_url"><img src="{{cart_item.product.image.url}}"
+                                                                          alt="img"
+                                                                          class="float-left rounded custom_image"></a>
+                    </td>
+                    <td class="text-left">
+                        {{cart_item.product.name}}
+                        <br>
+                        SKU:{{cart_item.product.id}}
+                        <br>
+                        Price: ${{cart_item.product.price}}
+                        <br>
+                        Qty: {{cart_item.quantity}} x {{cart_item.product.price}}
+                    </td>
+                    <td>
+                        $ {{cart_item.sub_total}}
+                    </td>
+                    {% if cart_item.quantity < cart_item.product.stock %}
+                    <td>
+                        <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i
+                                class="fa-solid fa-plus custom_icon"></i>
+                            &nbsp;<a href="" class="custom_a"><i class="fa-solid fa-minus custom_icon"></i></a>
+                            &nbsp;<a href="" class="custom_icon"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </a>
+                    </td>
+                    {% else %}
+                    <td>
+                            &nbsp;<a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="fa-solid fa-plus custom_icon"></i></a>
+                            &nbsp;<a href="" class="custom_icon"><i class="fa-regular fa-trash"></i></a>
+                        </a>
+                    </td>
+                </tr>
+                {% endif %}
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">-->
+<!--            <table class="table my_custom_table">-->
+<!--                <thread class="my_custom_thread">-->
+<!--                    <tr>-->
+<!--                        <th>-->
+<!--                            Checkout-->
+<!--                        </th>-->
+<!--                    </tr>-->
+<!--                </thread>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        Please review your shopping cart items before proceeding with order payment.-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <div class="mx-auto">-->
+<!--                <a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue Shoppping</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+{% endif %}
+{% endblock %}
