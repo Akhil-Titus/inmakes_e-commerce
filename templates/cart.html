@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block metadescription %}
-
 This is the cart page. Proceed to review your items and place your order
-
 {% endblock %}
+
 {% block title %}
 U-tech
 {% endblock %}
+
 {% block content %}
 {% if not cart_items %}
 <div>
@@ -47,7 +47,7 @@ U-tech
                 {% for cart_item in cart_items %}
                 <tr>
                     <td>
-                        <a href="cart_item.product.get_absolute_url"><img src="{{cart_item.product.image.url}}"
+                        <a href="{{ cart_item.product.get_url }}"><img src="{{cart_item.product.image.url}}"
                                                                           alt="img"
                                                                           class="float-left rounded custom_image"></a>
                     </td>
@@ -108,6 +108,9 @@ U-tech
             </table>
             <div class="mx-auto">
                 <a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue Shoppping</a>
+            </div>
+            <div class="mx-auto">
+                <a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block payment_button">Payment</a>
             </div>
         </div>
     </div>

@@ -32,12 +32,12 @@ See our new models - Utech store
             </div>
             {% endif %}
 
-            <div class="mx_auto">
+            <div class="mx_auto text-center">
                 {% if category %}
-                <img class="my_image" src="{{category.image.url}}" alt="{{category.name}}" width="720px">
+                <img class="main_image" src="{{category.image.url}}" alt="{{category.name}}">
             </div>
             <br>
-            <div>
+            <div class="text-center">
                 <h1 class="text-center my_title">{{category.name}}</h1>
                 <p class="text-justify">{{category.description}}</p>
             </div>
