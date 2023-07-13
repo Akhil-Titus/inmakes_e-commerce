@@ -52,6 +52,11 @@ footer {
     color:#000;
     font-size:12px;
 }
+
+.paginator {
+    margin-bottom: 80px; /* Adjust the value as needed */
+}
+
 .my_image{
     width:100%;
     height: auto;
