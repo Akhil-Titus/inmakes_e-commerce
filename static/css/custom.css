@@ -21,6 +21,11 @@ font-family: 'Share Tech', sans-serif;
 .my_footer{
     background-color: #f8f9fa;
     height:60px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 .my_footer p{
     padding-top:20px;
